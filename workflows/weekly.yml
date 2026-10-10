@@ -1,0 +1,23 @@
+name: Weekly hotel report
+on:
+  schedule:
+    - cron: "0 0 * * 1"   # Monday 00:00 UTC = 08:00 Malaysia time
+  workflow_dispatch: {}    # lets you run it manually from the Actions tab
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python weekly_report.py
+        env:
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+          SHEET_GID: ${{ secrets.SHEET_GID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_APP_PASSWORD: ${{ secrets.SMTP_APP_PASSWORD }}
+          TEST_RECIPIENT: ${{ secrets.TEST_RECIPIENT }}
+          SEND_TO_REAL_OWNERS: "false"
