@@ -46,5 +46,3 @@ Column names can be changed in `.env` (`COL_HOTEL`, `COL_REVENUE`, `COL_ORDERS`,
 - **`HTTP 400` / `403` from Google**: check the sheet is shared as "Anyone with the link" and is a real Google Sheet.
 - **Gmail login error**: create a new App Password and paste it without spaces.
 - **Never commit `.env`**. It is listed in `.gitignore`.
-
-See `WRITEUP.md` for why these tools and thresholds were chosen and how the AI messages are designed.
